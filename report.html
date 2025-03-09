@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Generation</title>
+    <link rel="stylesheet" href="report.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">Personal Budget Tracker</div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="profile.html">Profile Settings</a>
+        <a href="report.html" class="active">Report Generation</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="card">
+            <h3>Generate Financial Reports</h3>
+            <p>Select a date range to generate your report:</p>
+
+            <!-- Report Generation Form -->
+            <form id="reportForm">
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate" required><br><br>
+
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate" required><br><br>
+
+                <button type="submit">Generate Report</button>
+            </form>
+
+            <!-- Report Output -->
+            <div id="reportOutput" class="report-output"></div>
+            <div id="printButtonContainer" style="display:none; text-align:center; margin-top:20px;">
+                <button onclick="printReport()" class="print-button">Print Report</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        &copy; 2024 Personal Budget Tracker. All rights reserved.
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Check if user is logged in
+            const userEmail = sessionStorage.getItem("userEmail");
+            if (!userEmail) {
+                alert("You need to be logged in to access reports.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            // Load Data from Local Storage
+            function loadData() {
+                const savedData = localStorage.getItem('budgetData');
+                return savedData ? JSON.parse(savedData) : { transactions: [] };
+            }
+
+            // Report generation event
+            document.getElementById('reportForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const startDate = new Date(document.getElementById('startDate').value);
+                const endDate = new Date(document.getElementById('endDate').value);
+
+                if (!startDate || !endDate) {
+                    alert("Please select both start and end dates.");
+                    return;
+                }
+
+                if (endDate < startDate) {
+                    alert("End date cannot be earlier than start date.");
+                    return;
+                }
+
+                const data = loadData();
+                const transactions = data.transactions || [];
+
+                console.log("Loaded Transactions:", transactions);
+                console.log("Start Date:", startDate, "End Date:", endDate);
+
+                // Filter transactions by date range
+                const filteredTransactions = transactions.filter(transaction => {
+                    const transactionDate = new Date(transaction.date + "T00:00:00"); // Ensure correct parsing
+                    return transactionDate >= startDate && transactionDate <= endDate;
+                });
+
+                if (filteredTransactions.length === 0) {
+                    document.getElementById('reportOutput').innerHTML = "<p>No transactions found for the selected period.</p>";
+                    document.getElementById("printButtonContainer").style.display = "none";
+                    return;
+                }
+
+                // Calculate totals
+                let totalIncome = 0, totalExpenses = 0, totalSavings = 0;
+
+                filteredTransactions.forEach(transaction => {
+                    if (transaction.type === 'Income') {
+                        totalIncome += transaction.amount;
+                    } else if (transaction.type === 'Expense') {
+                        totalExpenses += transaction.amount;
+                    } else if (transaction.type === 'Savings') {
+                        totalSavings += transaction.amount;
+                    }
+                });
+
+                // Display report
+                document.getElementById('reportOutput').innerHTML = `
+                    <h4>Financial Report from ${startDate.toLocaleDateString()} to ${endDate.toLocaleDateString()}</h4>
+                    <p><strong>Total Income:</strong> Kshs ${totalIncome.toFixed(2)}</p>
+                    <p><strong>Total Expenses:</strong> Kshs ${totalExpenses.toFixed(2)}</p>
+                    <p><strong>Total Savings:</strong> Kshs ${totalSavings.toFixed(2)}</p>
+
+                    <h5>Transaction Details:</h5>
+                    <ul>
+                        ${filteredTransactions.map(transaction => `
+                            <li>
+                                <strong>${transaction.type}:</strong> Kshs ${transaction.amount.toFixed(2)} 
+                                (${transaction.name}) on ${new Date(transaction.date).toLocaleDateString()}
+                                ${transaction.category ? `<span>(Category: ${transaction.category})</span>` : ''}
+                            </li>
+                        `).join('')}
+                    </ul>
+                `;
+
+                document.getElementById("printButtonContainer").style.display = "block"; // Show print button
+            });
+        });
+
+        // Function to Print Report
+        function printReport() {
+            const printContent = document.getElementById('reportOutput').innerHTML;
+            const printWindow = window.open('', '', 'width=800,height=600');
+            printWindow.document.write('<html><head><title>Print Report</title></head><body>');
+            printWindow.document.write(printContent);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        }
+    </script>
+</body>
+</html>

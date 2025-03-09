@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo"> FINANCIAL BUDGET TRACKER</div>
+        
+    </div>
+
+    <!-- Back Button -->
+    <div class="back-button-container">
+        <a href="taskbar.html" class="back-button">&#8592; Back to Taskbar</a>
+    </div>
+   
+    <!-- DATE -->
+    <div class="date"></div>
+
+    <!-- ACCOUNT BALANCE -->
+    <div class="account-balance card">
+        <h3>BALANCE</h3>
+        <p id="balance-amount">Kshs 0.00</p>
+    </div>
+
+    <!-- OVERLAYS -->
+    <!-- EXPENSE OVERLAY -->
+    <div id="expense-overlay" class="overlay">
+        <div class="overlay-content">
+            <h3>Add Expense</h3>
+            <form id="expense-form">
+                <label for="expenseName">What are you spending on:</label>
+                <input type="text" id="expenseName" name="expenseName" placeholder="Enter expense name" required />
+                <label for="expenseAmount">How much are you spending (Kshs):</label>
+                <input type="number" id="expenseAmount" name="expenseAmount" placeholder="Enter amount" required />
+                <label for="expenseDate">Date:</label>
+                <input type="date" id="expenseDate" name="expenseDate" required />
+                <label for="expenseCategory">Category:</label>
+                <select id="expenseCategory" name="expenseCategory" required>
+                    <option value="Food">Food</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Miscellaneous">Miscellaneous</option>
+                </select>
+                <button type="submit" class="overlay-button">Add Expense</button>
+                <button type="button" class="overlay-close" id="closeExpenseOverlay">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- INCOME OVERLAY -->
+    <div id="income-overlay" class="overlay">
+        <div class="overlay-content">
+            <h3>Add Income</h3>
+            <form id="income-form">
+                <label for="incomeName">Source of income:</label>
+                <input type="text" id="incomeName" name="incomeName" placeholder="Enter income source" required />
+                <label for="incomeAmount">How much did you earn (Kshs):</label>
+                <input type="number" id="incomeAmount" name="incomeAmount" placeholder="Enter amount" required />
+                <label for="incomeDate">Date:</label>
+                <input type="date" id="incomeDate" name="incomeDate" required />
+                <button type="submit" class="overlay-button">Add Income</button>
+                <button type="button" class="overlay-close" id="closeIncomeOverlay">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SAVINGS OVERLAY -->
+    <div id="savings-overlay" class="overlay">
+        <div class="overlay-content">
+            <h3>Add Savings</h3>
+            <form id="savings-form">
+                <label for="savingsAmount">How much are you saving (Kshs):</label>
+                <input type="number" id="savingsAmount" name="savingsAmount" placeholder="Enter amount" required />
+                <label for="savingsDate">Date:</label>
+                <input type="date" id="savingsDate" name="savingsDate" required />
+                <button type="submit" class="overlay-button">Add Savings</button>
+                <button type="button" class="overlay-close" id="closeSavingsOverlay">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SAVINGS GOALS OVERLAY -->
+    <div id="goal-overlay" class="overlay">
+        <div class="overlay-content">
+            <h3>Add Savings Goal</h3>
+            <form id="goal-form">
+                <label for="goalName">What are you saving towards:</label>
+                <input type="text" id="goalName" name="goalName" placeholder="Enter goal name" required />
+                <label for="goalTarget">Target Amount (Kshs):</label>
+                <input type="number" id="goalTarget" name="goalTarget" placeholder="Enter target amount" required />
+                <label for="goalDate">Target Date:</label>
+                <input type="date" id="goalDate" name="goalDate" required />
+                <button type="submit" class="overlay-button">Add Goal</button>
+                <button type="button" class="overlay-close" id="closeGoalOverlay">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- PERIOD BETWEEN -->
+    <div class="period-between">
+        <h3>PERIOD OF TRANSACTIONS</h3>
+        <div class="card-container">
+            <div class="expenses">
+                <h4>EXPENSES</h4>
+                <p class="amount" id="expensesAmount">Kshs 0.00</p>
+                <button class="circular-button" id="addExpenseButton">+</button>
+            </div>
+            <div class="income">
+                <h4>INCOME</h4>
+                <p class="amount" id="incomeAmount"><span id="incomeAmount"></span></p>
+                <button class="circular-button" id="addIncomeButton">+</button>
+            </div>
+            <div class="savings">
+                <h4>SAVINGS</h4>
+                <p class="amount" id="totalSavingsAmount">Kshs 0.00</p>
+                <button class="circular-button" id="addSavingsButton">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRANSACTIONS HISTORY -->
+    <div class="transactions-history">
+        <h3>TRANSACTIONS HISTORY</h3>
+        <div class="transaction-card">
+            <ul class="transaction-list" id="transactionList">
+                <!-- Transaction items will be dynamically inserted here -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- SAVINGS GOALS -->
+    <div class="savings-goals">
+        <h3>SAVINGS GOALS</h3>
+        <div id="goalsContainer">
+            <!-- Individual Savings Goals will be dynamically inserted here -->
+        </div>
+        <button class="add-goal-button" id="addGoalButton">ADD NEW GOAL</button>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>&copy; 2024 Budget Planner. D & M. All rights reserved.</p>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+/* General body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text for contrast */
+    box-sizing: border-box;
+}
+
+/* Header styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1a1a1a; /* Dark grey background */
+    color: #e0e0e0; /* Light text */
+    padding: 15px 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Taskbar styles */
+.taskbar {
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(45deg, #2e8b57, #2b7a4c); /* Green gradient */
+    padding: 15px 0;
+    position: sticky;
+    top: 80px;
+    z-index: 99;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* Links inside the taskbar */
+.taskbar a {
+    color: #e0e0e0; /* Light text */
+    text-decoration: none;
+    padding: 14px 30px;
+    margin: 0 20px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s ease;
+    border-radius: 8px;
+}
+
+/* Active link */
+.taskbar a.active {
+    background-color: #25753a; /* Darker green */
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Hover effects for links */
+.taskbar a:hover {
+    background-color: #25753a; /* Dark green on hover */
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Main content styling */
+.main-content {
+    padding: 120px 20px 20px; /* Padding for header and taskbar */
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* Card styles */
+.card {
+    background-color: #1e1e1e; /* Dark card background */
+    padding: 30px;
+    margin: 30px 0;
+    border-radius: 12px; /* Soft rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
+    text-align: center;
+}
+
+.card h3 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.card p {
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+/* Footer styles */
+.footer {
+    text-align: center;
+    padding: 20px 30px;
+    background-color: #333; /* Dark footer */
+    color: #e0e0e0; /* Light text */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .taskbar {
+        flex-direction: column;
+    }
+
+    .taskbar a {
+        margin: 10px 0;
+        padding: 12px 20px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+}

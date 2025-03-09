@@ -1,0 +1,196 @@
+/* General body styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text for contrast */
+    box-sizing: border-box;
+    line-height: 1.6;
+}
+
+/* Header styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1a1a1a; /* Dark grey background */
+    color: #e0e0e0; /* Light text */
+    padding: 20px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+/* Taskbar styles */
+.taskbar {
+    display: flex;
+    justify-content: center;
+    background-color: #333; /* Darker grey */
+    padding: 10px 0;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+.taskbar a {
+    color: #e0e0e0; /* Light text */
+    text-decoration: none;
+    padding: 12px 20px;
+    margin: 0 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.taskbar a.active {
+    background-color: #2e8b57; /* Dark green */
+    color: #fff;
+}
+
+.taskbar a:hover {
+    background-color: #2e8b57; /* Dark green */
+    color: #fff;
+}
+
+/* Main content */
+.main-content {
+    padding: 100px 20px 20px; /* Padding for fixed header and taskbar */
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* Card styles */
+.card {
+    background-color: #1e1e1e; /* Dark card background */
+    padding: 30px;
+    margin: 30px 0;
+    border-radius: 12px; /* Soft rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* More pronounced shadow */
+    text-align: center;
+}
+
+.card h3 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.card p {
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+/* Form styles */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+form input {
+    padding: 12px;
+    background-color: #333;
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: #e0e0e0;
+    font-size: 16px;
+}
+
+form button {
+    background-color: #2e8b57; /* Green button */
+    color: #fff;
+    padding: 14px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #25753a; /* Darker green on hover */
+}
+
+/* Report Output */
+.report-output {
+    background-color: #1e1e1e; /* Dark background */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 30px;
+    color: #e0e0e0;
+}
+
+.report-output h4 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.report-output p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.report-output ul {
+    padding-left: 20px;
+}
+
+.report-output li {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.report-output strong {
+    color: #2e8b57; /* Green for amounts */
+}
+
+/* Footer styles */
+.footer {
+    text-align: center;
+    padding: 15px 20px;
+    background-color: #333; /* Dark footer */
+    color: #e0e0e0; /* Light text */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .taskbar {
+        flex-direction: column;
+        padding: 10px 0;
+    }
+
+    .taskbar a {
+        margin: 10px 0;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .report-output {
+        padding: 20px;
+    }
+}
+
